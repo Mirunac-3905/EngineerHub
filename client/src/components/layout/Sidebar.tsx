@@ -89,14 +89,6 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
           </div>
         ))}
       </nav>
-
-      <div className="rounded-xl border border-border/60 bg-gradient-to-br from-primary/5 to-accent/10 p-4">
-        <p className="text-xs font-medium text-foreground">Backend-ready</p>
-        <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
-          MERN architecture wired through REST services. Connect Express + MongoDB
-          anytime.
-        </p>
-      </div>
     </div>
   );
 }

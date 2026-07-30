@@ -74,6 +74,70 @@ export interface Resume {
   uploadedAt: string;
 }
 
+export interface PersonalInfo {
+  name: string;
+  email: string;
+  phone: string;
+  location: string;
+  linkedin: string;
+  github: string;
+  portfolio: string;
+  summary: string;
+}
+
+export interface Education {
+  institution: string;
+  degree: string;
+  field: string;
+  startDate: string;
+  endDate: string;
+  gpa: string;
+}
+
+export interface SkillCategory {
+  category: string;
+  skills: string[];
+}
+
+export interface Experience {
+  company: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+  current: boolean;
+  description: string;
+}
+
+export interface Project {
+  name: string;
+  description: string;
+  techStack: string[];
+  link: string;
+  startDate: string;
+  endDate: string;
+}
+
+export interface Certification {
+  name: string;
+  issuer: string;
+  date: string;
+  credentialId: string;
+  link: string;
+}
+
+export interface StructuredResume {
+  _id: string;
+  userId: string;
+  personalInfo: PersonalInfo;
+  education: Education[];
+  skills: SkillCategory[];
+  experience: Experience[];
+  projects: Project[];
+  certifications: Certification[];
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface Research extends BaseDocument {
   title: string;
   category: string;

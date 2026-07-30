@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { PasswordInput } from '@/components/ui/password-input';
 import { settingsService } from '@/services/settingsService';
 import { useTheme } from '@/context/ThemeContext';
 import { LoadingState, ErrorState } from '@/components/shared/StateViews';
@@ -92,11 +93,11 @@ export function SettingsPage() {
           <div className="space-y-3">
             <div className="space-y-1.5">
               <Label htmlFor="current">Current password</Label>
-              <Input id="current" type="password" placeholder="••••••••" />
+              <PasswordInput id="current" placeholder="••••••••" />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="new">New password</Label>
-              <Input id="new" type="password" placeholder="••••••••" />
+              <PasswordInput id="new" placeholder="••••••••" />
             </div>
             <Button
               variant="outline"

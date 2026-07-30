@@ -58,8 +58,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   async function register(payload: RegisterPayload) {
     setLoading(true);
     try {
-      const res = await authService.register(payload);
-      persist(res.token, res.user);
+      await authService.register(payload);
+      // Don't auto-login after registration
     } finally {
       setLoading(false);
     }

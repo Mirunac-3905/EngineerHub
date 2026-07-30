@@ -19,6 +19,16 @@ import { EmptyState, ErrorState, LoadingState } from '@/components/shared/StateV
 import type { Resume } from '@/types';
 import { toast } from 'sonner';
 
+function getFullFileUrl(fileUrl: string) {
+  // In development, Vite proxy handles /uploads, so use relative path
+  // In production, use the full backend URL
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '';
+  if (apiBaseUrl && !fileUrl.startsWith('http')) {
+    return `${apiBaseUrl}${fileUrl}`;
+  }
+  return fileUrl;
+}
+
 function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
@@ -154,12 +164,12 @@ export function ResumePage() {
 
             <div className="flex flex-wrap gap-2 border-t border-border/60 pt-4">
               <Button asChild variant="outline" size="sm">
-                <a href={resume.fileUrl} target="_blank" rel="noreferrer">
+                <a href={getFullFileUrl(resume.fileUrl)} target="_blank" rel="noreferrer">
                   <Eye className="mr-1.5 h-3.5 w-3.5" /> Preview
                 </a>
               </Button>
               <Button asChild variant="outline" size="sm">
-                <a href={resume.fileUrl} download={resume.fileName}>
+                <a href={getFullFileUrl(resume.fileUrl)} download={resume.fileName}>
                   <Download className="mr-1.5 h-3.5 w-3.5" /> Download
                 </a>
               </Button>
@@ -189,7 +199,7 @@ export function ResumePage() {
             </p>
             <div className="h-[420px] overflow-hidden rounded-lg border border-border/60 bg-background">
               <iframe
-                src={`${resume.fileUrl}#toolbar=0`}
+                src={`${getFullFileUrl(resume.fileUrl)}#toolbar=0`}
                 title="Resume preview"
                 className="h-full w-full"
               />

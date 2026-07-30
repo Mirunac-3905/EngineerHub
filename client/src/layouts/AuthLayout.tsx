@@ -61,10 +61,6 @@ export function AuthLayout({
             ))}
           </div>
         </div>
-
-        <p className="relative text-xs text-muted-foreground">
-          Backend-ready architecture for Node.js, Express & MongoDB.
-        </p>
       </div>
 
       {/* Form panel */}

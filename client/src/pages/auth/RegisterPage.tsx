@@ -2,10 +2,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Loader2, Mail, Lock, User } from 'lucide-react';
+import { Loader2, Mail, User } from 'lucide-react';
 import { AuthLayout } from '@/layouts/AuthLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { PasswordInput } from '@/components/ui/password-input';
 import {
   Form,
   FormControl,
@@ -15,6 +16,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useAuth } from '@/context/AuthContext';
+import { toast } from 'sonner';
 
 const schema = z
   .object({
@@ -41,7 +43,8 @@ export function RegisterPage() {
   async function onSubmit(values: Values) {
     try {
       await register({ name: values.name, email: values.email, password: values.password });
-      navigate('/dashboard', { replace: true });
+      toast.success('Registration successful. Please log in to continue.');
+      navigate('/login', { replace: true });
     } catch (e) {
       form.setError('root', { message: (e as Error).message });
     }
@@ -102,10 +105,7 @@ export function RegisterPage() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                      <Input type="password" className="pl-9" placeholder="••••••••" {...field} />
-                    </div>
+                    <PasswordInput placeholder="••••••••" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -118,10 +118,7 @@ export function RegisterPage() {
                 <FormItem>
                   <FormLabel>Confirm</FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                      <Input type="password" className="pl-9" placeholder="••••••••" {...field} />
-                    </div>
+                    <PasswordInput placeholder="••••••••" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

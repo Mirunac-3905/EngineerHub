@@ -23,10 +23,8 @@ export const register = asyncHandler(async (req, res) => {
   await Profile.create({ userId: user._id, name, email });
   await Settings.create({ userId: user._id });
 
-  const token = generateToken(user._id);
   res.status(201).json({
-    token,
-    user: { _id: user._id, name: user.name, email: user.email },
+    message: 'Registration successful. Please log in to continue.',
   });
 });
 
